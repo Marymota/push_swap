@@ -35,23 +35,3 @@ int error(char **argv)
 	}
 	return (0);
 }
-
-/* Iterates through or linked_list to find duplicates
-*/
-int duplicates(t_list *stack)
-{
-   	t_list *tmp;
-
-	while (stack)
-	{
-		tmp = stack->next;
-		while (tmp)
-		{
-			if (stack->content == tmp->content)  
-				return (1);
-			tmp = tmp->next;
-		}
-		stack = stack->next;
-	}
-	return (0);
-}

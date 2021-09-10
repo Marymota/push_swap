@@ -13,10 +13,13 @@ int main(int argc, char *argv[])
 	(void)stack_b;
 	valid_arguments(argv + 1, argc);
 	get_stack(&stack_a, &argv[1]);
-
+	if (!ft_lstsorted(stack_a))
+		printf("KO!\n");
+	else
+		printf("OK!\n");
 	while (stack_a != NULL)
 	{
-		printf("%i\n", (int)stack_a->content);
+		printf("%i\n", (int)stack_a->data);
 		stack_a = stack_a->next;
 	}
 	return (1);
@@ -45,7 +48,7 @@ void get_stack(t_list **stack, char **argv)
 		ft_lstadd_back(stack, node);
 		++i;
 	}
-	if (duplicates(*stack))
+	if (ft_lstdup(*stack))
 	{
 		ft_putstr_fd("Error!\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);

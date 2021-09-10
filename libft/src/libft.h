@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:08:49 by marmota           #+#    #+#             */
-/*   Updated: 2021/09/08 18:28:03 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/10 15:48:40 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	void			*data;
 	struct s_list	*next;
 }				t_list;
 
@@ -58,7 +58,7 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
-// linked-list
+// linked-lists
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
@@ -70,6 +70,9 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 void (*del)(void *));
 
+int 			ft_lstdup(t_list *lst);
+int ft_lstsorted(t_list *lst);
+
 // Minitalk
 size_t			ft_intlen(int i);
 int				ft_strisdigit(char *c);
@@ -78,6 +81,6 @@ char			*ft_str_add_char(char *str, char c);
 
 // Push_Swap
 int             ft_isint(char *argv);
-
+int 			ft_lstdup(t_list *lst);
 
 #endif

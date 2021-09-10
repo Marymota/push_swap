@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 13:03:39 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/11 13:03:41 by marmota          ###   ########.fr       */
+/*   Created: 2021/03/04 22:31:50 by marmota           #+#    #+#             */
+/*   Updated: 2021/09/10 15:50:53 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (lst)
+	t_list	*ret;
+	t_list	*tmp;
+
+	if (!lst || !f)
+		return (NULL);
+	tmp = ft_lstnew(f(lst->data));
+	if (!tmp)
 	{
-		del(lst->content);
-		free(lst);
+		ft_lstclear(&lst, del);
 	}
+	ret = tmp;
+	lst = lst->next;
+	while (lst)
+	{
+		tmp = ft_lstnew(f(lst->data));
+		if (!tmp)
+		{
+			ft_lstclear(&lst, del);
+			ft_lstclear(&ret, del);
+		}
+		lst = lst->next;
+		ft_lstadd_back(&ret, tmp);
+	}
+	return (ret);
 }
