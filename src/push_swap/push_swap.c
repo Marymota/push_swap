@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
 	valid_arguments(argv + 1, argc);
 	get_stack(&stack_a, &argv[1]);
 	if (!ft_lstsorted(stack_a))
+	{
 		printf("KO!\n");
+		sort(argc, &stack_a, &stack_b);
+	}
 	else
 		printf("OK!\n");
 	while (stack_a != NULL)
@@ -32,7 +35,7 @@ int main(int argc, char *argv[])
 void get_stack(t_list **stack, char **argv)
 {
 	t_list *node;
-	long data;
+	long int data;
 	int i;
 
 	i = 0;
