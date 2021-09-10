@@ -6,7 +6,7 @@ void sort(int args, t_list **stack_a, t_list **stack_b)
 	if (args <= 4)
 	{
 		printf("sort small: \n");
-		sort_small(*stack_a);
+		sort_small(stack_a);
 	}
 }
 void swap(t_list *stack)
@@ -21,51 +21,55 @@ void swap(t_list *stack)
 
 void rotate(t_list **stack)
 {
-	void *data;
+	t_list *node;
 
-	data = (*stack)->data;
-	ft_lstadd_back(stack, ft_lstnew(data));
-	//ft_lstrm_node(stack);
-	*stack = (*stack)->next;
+	node = *stack;
+	if (!node || !node->next)
+		return ;
+	*stack = node->next;
+	node->next = 0;
+	ft_lstadd_back(stack, node);
 	printf("ra\n");
 }
 
-void reverse_rotate(t_list *stack)
+void reverse_rotate(t_list **stack)
 {
-	void *data;
+	t_list *tmp;
 	t_list *node;
 
-	ft_lstiter(stack, 0);
-	data = stack->data;
-	node = ft_lstnew(data);
-	ft_lstdelone(stack, 0);
-	ft_lstadd_front(&stack, node);
+	tmp = *stack;
+	if (!tmp || !tmp->next)
+		return ;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	node = tmp->next;
+	tmp->next = 0;
+	ft_lstadd_front(stack, node);
+	printf("rra\n");
 }
 
-void sort_small(t_list *stack)
+void sort_small(t_list **stack)
 {
 	void	*min;
 	int		*max;
 
-	min = (void *)ft_lstget_min(stack);
-	max = (void *)ft_lstget_max(stack);
+	min = (void *)ft_lstget_min(*stack);
+	max = (void *)ft_lstget_max(*stack);
 	printf("min %i max: %i\n", (int)min, (int)max);
-	while (!ft_lstsorted(stack))
+	while (!ft_lstsorted(*stack))
 	{
-		if (stack->data == max && stack->next->data == min)
+		if ((*stack)->data == max && (*stack)->next->data == min)
 		{
-			rotate(&stack);
+			rotate(stack);
 		}
-		else if (stack->data == min || (stack->data > stack->next->data))
+		else if ((*stack)->data == min || ((*stack)->data > (*stack)->next->data))
 		{
-			swap(stack);
+			swap(*stack);
 		}
-
-		//else
-		//{
-		//	reverse_rotate(stack);
-		//	printf("rra\n");
-		//}
+		else
+		{
+			reverse_rotate(stack);
+		}
 
 	}
 }

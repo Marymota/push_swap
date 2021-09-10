@@ -15,7 +15,7 @@ void valid_arguments(char **argv, int argc);
 
 //sort
 void sort(int args, t_list **stack_a, t_list **stack_b);
-void sort_small(t_list *stack);
+void sort_small(t_list **stack);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:08:49 by marmota           #+#    #+#             */
-/*   Updated: 2021/09/10 23:26:46 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/10 23:47:48 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ int 			ft_lstdup(t_list *lst);  				//extra
 int 			ft_lstsorted(t_list *lst);				//extra
 long int		ft_lstget_min(t_list *lst);				//extra
 long int 		ft_lstget_max(t_list *lst);				//extra
-void			ft_lstrm_node(t_list **lst);
 
 #endif
