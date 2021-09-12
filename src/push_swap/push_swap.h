@@ -17,5 +17,10 @@ void valid_arguments(char **argv, int argc);
 void sort(int args, t_list **stack_a, t_list **stack_b);
 void sort_small(t_list **stack);
 
+// actions
+void swap(t_list *stack);
+void rotate(t_list **stack);
+void reverse_rotate(t_list **stack);
+
 
 #endif

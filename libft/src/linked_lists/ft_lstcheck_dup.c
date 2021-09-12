@@ -1,7 +1,7 @@
 /* Iterates through or linked_list to find duplicates */
 #include "libft.h"
 
-int ft_lstdup(t_list *lst)
+int ft_lstcheck_dup(t_list *lst)
 {
    	t_list *tmp;
 

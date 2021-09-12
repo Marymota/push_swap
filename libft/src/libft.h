@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:08:49 by marmota           #+#    #+#             */
-/*   Updated: 2021/09/10 23:47:48 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/12 21:15:15 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 int				ft_lstsize(t_list *lst);
-int 			ft_lstdup(t_list *lst);  				//extra
+int 			ft_lstcheck_dup(t_list *lst);  				//extra
 int 			ft_lstsorted(t_list *lst);				//extra
 long int		ft_lstget_min(t_list *lst);				//extra
 long int 		ft_lstget_max(t_list *lst);				//extra

@@ -51,7 +51,7 @@ void get_stack(t_list **stack, char **argv)
 		ft_lstadd_back(stack, node);
 		++i;
 	}
-	if (ft_lstdup(*stack))
+	if (ft_lstcheck_dup(*stack))
 	{
 		ft_putstr_fd("Error!\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
