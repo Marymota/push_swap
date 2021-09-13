@@ -7,7 +7,6 @@ void swap(t_list *stack)
 	first_node = stack->data;
 	stack->data = stack->next->data;
 	stack->next->data = first_node;
-	printf("sa\n");
 }
 
 void rotate(t_list **stack)
@@ -20,7 +19,6 @@ void rotate(t_list **stack)
 	*stack = node->next;
 	node->next = 0;
 	ft_lstadd_back(stack, node);
-	printf("ra\n");
 }
 
 void reverse_rotate(t_list **stack)
@@ -36,5 +34,16 @@ void reverse_rotate(t_list **stack)
 	node = tmp->next;
 	tmp->next = 0;
 	ft_lstadd_front(stack, node);
-	printf("rra\n");
+}
+
+void push(t_list **stack_src, t_list **stack_dest)
+{
+	t_list *node;
+
+	node = *stack_src;
+	if (!node)
+		return ;
+	*stack_src = node->next;
+	node->next = 0;
+	ft_lstadd_front(stack_dest, node);
 }

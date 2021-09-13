@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 	t_list *stack_b;
 
 	stack_a = 0;
-	(void)stack_b;
+	stack_b = 0;
 	valid_arguments(argv + 1, argc);
 	get_stack(&stack_a, &argv[1]);
 	if (!ft_lstsorted(stack_a))
@@ -22,8 +22,13 @@ int main(int argc, char *argv[])
 		printf("OK!\n");
 	while (stack_a != NULL)
 	{
-		printf("%i\n", (int)stack_a->data);
+		printf("stack a: %i\n", (int)stack_a->data);
 		stack_a = stack_a->next;
+	}
+	while (stack_b != NULL)
+	{
+		printf("stack b: %i\n", (int)stack_b->data);
+		stack_b = stack_b->next;
 	}
 	return (1);
 }
