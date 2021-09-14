@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+pyviz.py
+.git
+./push_swap_visualizer

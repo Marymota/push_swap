@@ -1,64 +1,38 @@
 #include "push_swap.h"
 
+void sort_large(t_list **stack_a, t_list **stack_b, int min, int max)
+{	
+	
+	sort_medium(stack_a, stack_b, min, max);
+	
+}
+
 void sort_medium(t_list **stack_a, t_list **stack_b, int min, int max)
 {
-	int len;
-	len = ft_lstsize(*stack_a);
-	//printf("min %i max: %i len: %i\n", (int)min, (int)max, len);
-	while (len-- > 3)
+	while (ft_lstsize(*stack_a) > 3)
 	{
+		while ((int)(*stack_a)->data != min)
+		{
+			if ((int)(*stack_a)->next->data != min && (int)(*stack_a)->data != min)
+			{
+				reverse_rotate(stack_a);
+				printf("rra\n");
+			}
+			else
+			{
+				rotate(stack_a);
+				printf("ra\n");	
+			}
+		}
 		push(stack_a, stack_b);
 		printf("pb\n");
+		min = ft_lstget_min(*stack_a);
 	}
 	sort_small(stack_a, min, max);
-	if (stack_b)
+	while (*stack_b)
 	{
 		push(stack_b, stack_a);
 		printf("pa\n");
-	}
-	while (!ft_lstsorted(*stack_a))
-	{
-		//printf("stack: %i, max: %i\n", (int)(*stack_a)->data, (int)max);
-		if ((int)(*stack_a)->data == max || (int)(*stack_b)->data == max)
-		{
-			rotate(stack_a);
-			printf("ra\n");
-		}
-		else
-		{
-			if ((int)(*stack_a)->data > (int)(*stack_a)->next->data)
-			{
-				swap(*stack_a);
-				printf("sa\n");
-				if (!ft_lstsorted(*stack_a))
-				{
-					push(stack_a, stack_b);
-					printf("pb\n");
-					sort_small(stack_a, min, max);
-					if (stack_b)
-					{
-						push(stack_b, stack_a);
-					printf("pa\n");
-				}
-					if (!ft_lstsorted(*stack_a))
-					{
-						push(stack_a, stack_b);
-						printf("pb\n");
-						sort_small(stack_a, min, max);
-					}
-				}
-				else
-				{
-					push(stack_b, stack_a);
-					printf("pa\n");
-				}
-			}
-		}
-		if (stack_b)
-		{
-			push(stack_b, stack_a);
-			printf("pa\n");
-		}
 	}
 }
 
@@ -93,14 +67,17 @@ void sort(int args, t_list **stack_a, t_list **stack_b)
 	max = (long int)ft_lstget_max(*stack_a);
 	if (args <= 4)
 	{
-		printf("sort small: \n");
+		//printf("sort small: \n");
 		sort_small(stack_a, min, max);
 	}
 	else if (args <= 6)
 	{
-		printf("sort medium: \n");
+		//printf("sort medium: \n");
 		sort_medium(stack_a, stack_b, min, max);
 	}
+	else
+		sort_large(stack_a, stack_b, min, max);
+	//printf("\nMoves: %i\n\n", i);
 }
 
 

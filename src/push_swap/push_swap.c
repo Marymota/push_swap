@@ -15,22 +15,22 @@ int main(int argc, char *argv[])
 	get_stack(&stack_a, &argv[1]);
 	if (!ft_lstsorted(stack_a))
 	{
-		printf("KO!\n");
+	//	printf("KO!\n");
 		sort(argc, &stack_a, &stack_b);
 	}
-	else
-		printf("OK!\n");
-	while (stack_a != NULL)
-	{
-		printf("stack a: %i\n", (int)stack_a->data);
-		stack_a = stack_a->next;
-	}
-	while (stack_b != NULL)
-	{
-		printf("stack b: %i\n", (int)stack_b->data);
-		stack_b = stack_b->next;
-	}
-	return (1);
+	//else
+	//	printf("OK!\n");
+	//while (stack_a != NULL)
+	//{
+	//	printf("stack a: %i\n", (int)stack_a->data);
+	//	stack_a = stack_a->next;
+	//}
+	//while (stack_b != NULL)
+	//{
+	//	printf("stack b: %i\n", (int)stack_b->data);
+	//	stack_b = stack_b->next;
+	//}
+	return (0);
 }
 
 /*  “get_stack” program
