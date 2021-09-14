@@ -15,7 +15,8 @@ void valid_arguments(char **argv, int argc);
 
 //sort
 void sort(int args, t_list **stack_a, t_list **stack_b);
-void sort_small(t_list **stack);
+void sort_small(t_list **stack, int min, int max);
+void sort_medium(t_list **stack_a, t_list **stack_b, int min, int max);
 
 // actions
 void swap(t_list *stack);
