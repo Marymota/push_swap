@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
 	}
 	//else
 	//	printf("OK!\n");
-	//while (stack_a != NULL)
-	//{
-	//	printf("stack a: %i\n", (int)stack_a->data);
-	//	stack_a = stack_a->next;
-	//}
+	while (stack_a != NULL)
+	{
+		printf("stack a: %i\n", (int)stack_a->data);
+		stack_a = stack_a->next;
+	}
 	//while (stack_b != NULL)
 	//{
 	//	printf("stack b: %i\n", (int)stack_b->data);
