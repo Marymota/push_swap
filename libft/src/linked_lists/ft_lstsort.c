@@ -9,7 +9,7 @@ t_list *mergeSort(t_list *a, t_list *b)
 	else if (b == NULL)
 		return (a);
 
-	if (a->data <= b->data)
+	if ((long int)a->data <= (long int)b->data)
 	{
 		res = a;
 		res->next = mergeSort(a->next, b);

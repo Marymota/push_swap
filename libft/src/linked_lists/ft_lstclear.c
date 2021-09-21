@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:52:37 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/04 22:28:42 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/20 15:36:00 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		}
 		*lst = 0;
 	}
+}
+
+void ft_lstdel_int(void *data)
+{
+	(void)data;
 }
