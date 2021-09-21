@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-int is_min_max_closer_to_top(t_list *stack, int min, int max)
+int	is_min_max_closer_to_top(t_list *stack, int min, int max)
 {
-	int len;
-	int i_min;
-	int i_max;
-	int check;
+	int	len;
+	int	i_min;
+	int	i_max;
+	int	check;
 
 	len = ft_lstsize(stack);
 	i_min = ft_lstget_idx(stack, min);
@@ -17,12 +17,12 @@ int is_min_max_closer_to_top(t_list *stack, int min, int max)
 	return (check);
 }
 
-int first_node_sorted(t_list *stack_a, t_list *stack_b)
+int	first_node_sorted(t_list *stack_a, t_list *stack_b)
 {
-	t_list *dup;
-	int first;
-	int last;
-	long int data_last_node;
+	t_list		*dup;
+	int			first;
+	int			last;
+	long int	data_last_node;
 
 	data_last_node = (long int)ft_lstlast(stack_a)->data;
 	dup = ft_lstdup(stack_a);
@@ -34,19 +34,19 @@ int first_node_sorted(t_list *stack_a, t_list *stack_b)
 	if (last == (first - 1) && ft_lstsize(stack_a) > last)
 		return (1);
 	else
-		return (0); 
+		return (0);
 }
 
 void	rotate_until_sorted(t_list **stack)
 {
-	int min;
-	int half_len;
-	int index;
+	int	min;
+	int	half_len;
+	int	index;
 
 	min = ft_lstget_min(*stack);
 	half_len = ft_lstsize(*stack) / 2;
 	index = ft_lstget_idx(*stack, (long int)min);
-	if(index < half_len)
+	if (index < half_len)
 	{
 		while ((long int)(*stack)->data != min)
 			rotate(stack, "ra\n");
@@ -58,22 +58,21 @@ void	rotate_until_sorted(t_list **stack)
 	}
 }
 
-
-void	merge_b_into_a_partitioning(t_list **stack_a, t_list **stack_b, t_list **partitions, int len)
+void	merge_btwn_limits(t_list **stack_a, t_list **stack_b, t_list **limits, int len)
 {
-	int curr_len;
-	int tmp;
+	int	curr_len;
+	int	tmp;
 
 	tmp = 0;
 	if (len == 0 || !(*stack_b))
 		return ;
-	ft_lstadd_front(partitions, ft_lstnew((void *)ft_lstget_median(*stack_b)));
+	ft_lstadd_front(limits, ft_lstnew((void *)ft_lstget_median(*stack_b)));
 	curr_len = len;
 	while (curr_len > len / 2 && *stack_b)
 	{
-		if((long int)(*partitions)->data <= (long int)(*stack_b)->data && curr_len--)
+		if ((long int)(*limits)->data <= (long int)(*stack_b)->data && curr_len--)
 			push(stack_b, stack_a, "pa\n");
-		else if((long int)(*stack_b)->data == ft_lstget_min(*stack_b))
+		else if ((long int)(*stack_b)->data == ft_lstget_min(*stack_b))
 		{
 			tmp++;
 			push(stack_b, stack_a, "pa\n");
@@ -83,14 +82,13 @@ void	merge_b_into_a_partitioning(t_list **stack_a, t_list **stack_b, t_list **pa
 		else
 			rotate(stack_b, "rb\n");
 	}
-	merge_b_into_a_partitioning(stack_a, stack_b, partitions, curr_len-tmp);
-
+	merge_btwn_limits(stack_a, stack_b, limits, curr_len - tmp);
 }
 
-void merge_b_into_a_ordering (t_list **stack_a, t_list **stack_b)
+void	merge_b_into_a_ordering (t_list **stack_a, t_list **stack_b)
 {
-	int min;
-	int max;
+	int	min;
+	int	max;
 
 	while (*stack_b)
 	{
@@ -103,7 +101,7 @@ void merge_b_into_a_ordering (t_list **stack_a, t_list **stack_b)
 		else if ((long int)(*stack_b)->data == max)
 			push(stack_b, stack_a, "pa\n");
 		else if ((long int)(*stack_b)->data == min)
-			push(stack_b, stack_a,"pa\n");
+			push(stack_b, stack_a, "pa\n");
 		else if (is_min_max_closer_to_top(*stack_b, min, max))
 			rotate(stack_b, "rb\n");
 		else
@@ -111,25 +109,25 @@ void merge_b_into_a_ordering (t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int split_a(t_list **stack_a, t_list **stack_b, t_list *partitions, int part_len)
+int	split_stack(t_list **stack_a, t_list **stack_b, t_list *limits, int limits_len)
 {
-	int first_split;
-	int ra_count;
+	int	first_split;
+	int	ra_count;
 
-	first_split = ft_lstsize(*stack_a) / 2 == part_len;
-	ra_count= 0;
-	while (part_len)
+	first_split = ft_lstsize(*stack_a) / 2 == limits_len;
+	ra_count = 0;
+	while (limits_len)
 	{
-		if ((long int)partitions->data <= (long int)(*stack_a)->data
-			&& (long int)(*stack_a)->data < (long int)partitions->next->data)
+		if ((long int)limits->data <= (long int)(*stack_a)->data
+			&& (long int)(*stack_a)->data < (long int)limits->next->data)
 		{
-			part_len--;
+			limits_len--;
 			if (first_node_sorted(*stack_a, *stack_b) && !first_split)
 				rotate(stack_a, "ra\n");
 			else
 				push(stack_a, stack_b, "pb\n");
 		}
-		else if ((long int)(*stack_a)->data < (long int)partitions->data)
+		else if ((long int)(*stack_a)->data < (long int)limits->data)
 			rotate(stack_a, "ra\n");
 		else
 		{
@@ -140,24 +138,22 @@ int split_a(t_list **stack_a, t_list **stack_b, t_list *partitions, int part_len
 	return (ra_count);
 }
 
-
-
-int get_diff_partitions(t_list *partitions, t_list *stack_a)
+int	get_diff_limits(t_list *limits, t_list *stack_a)
 {
-	t_list *dup;
-	int i_min;
-	int i_max;
-	long int data_inter_node;
+	t_list		*dup;
+	int			i_min;
+	int			i_max;
+	long int	data_inter_node;
 
 	dup = ft_lstdup(stack_a);
 	ft_lstsort(&dup);
-	i_min = ft_lstget_idx(dup, (long int)partitions->data);
-	i_max = ft_lstget_idx(dup, (long int)partitions->next->data);
+	i_min = ft_lstget_idx(dup, (long int)limits->data);
+	i_max = ft_lstget_idx(dup, (long int)limits->next->data);
 	if (i_max - i_min > 20 || (i_min == 0 && i_max == (ft_lstsize(stack_a) - 1)))
 	{
 		i_max = i_min + (i_max - i_min) / 2 + 1;
 		data_inter_node = ft_lstget_data(dup, i_max);
-		ft_lstadd_next(partitions, ft_lstnew((void *)data_inter_node));
+		ft_lstadd_next(limits, ft_lstnew((void *)data_inter_node));
 	}
 	ft_lstclear(&dup, ft_lstdel_int);
 	return (i_max - i_min);

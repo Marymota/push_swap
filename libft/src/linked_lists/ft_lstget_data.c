@@ -1,8 +1,8 @@
 #include "libft.h"
 
-int ft_lstget_data(t_list *lst, int pos)
+int	ft_lstget_data(t_list *lst, int pos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lst)

@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-void swap(t_list *stack, char *action)
+void	swap(t_list *stack, char *action)
 {
-	void *first_node;
+	void	*first_node;
 
 	first_node = stack->data;
 	stack->data = stack->next->data;
@@ -10,9 +10,9 @@ void swap(t_list *stack, char *action)
 	ft_putstr_fd(action, 1);
 }
 
-void rotate(t_list **stack, char *action)
+void	rotate(t_list **stack, char *action)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = *stack;
 	if (!node || !node->next)
@@ -24,10 +24,10 @@ void rotate(t_list **stack, char *action)
 		ft_putstr_fd(action, 1);
 }
 
-void reverse_rotate(t_list **stack, char *action)
+void	reverse_rotate(t_list **stack, char *action)
 {
-	t_list *tmp;
-	t_list *node;
+	t_list	*tmp;
+	t_list	*node;
 
 	tmp = *stack;
 	if (!tmp || !tmp->next)
@@ -40,9 +40,9 @@ void reverse_rotate(t_list **stack, char *action)
 	ft_putstr_fd(action, 1);
 }
 
-void push(t_list **stack_src, t_list **stack_dest, char *action)
+void	push(t_list **stack_src, t_list **stack_dest, char *action)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = *stack_src;
 	if (!node)
@@ -53,7 +53,7 @@ void push(t_list **stack_src, t_list **stack_dest, char *action)
 	ft_putstr_fd(action, 1);
 }
 
-void rotate_ab(t_list **stack_a, t_list **stack_b)
+void	rotate_ab(t_list **stack_a, t_list **stack_b)
 {
 	rotate(stack_a, "");
 	rotate(stack_b, "");

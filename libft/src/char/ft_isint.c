@@ -1,14 +1,9 @@
 #include "libft.h"
 
-/*	This function compares a string of digits
-	and its conversion to number.
-	The string and the number must have the same length
-	and keep the same value.
-*/
-int ft_isint(char *str)
+int	ft_isint(char *str)
 {
-	int i;
-	long tmp;
+	int		i;
+	long	tmp;
 
 	tmp = ft_atoi(str);
 	i = 0;

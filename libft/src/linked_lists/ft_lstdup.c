@@ -1,9 +1,9 @@
 #include "libft.h"
 
-t_list *ft_lstdup(t_list *lst)
+t_list	*ft_lstdup(t_list *lst)
 {
-	t_list *dup;
-	t_list *node;
+	t_list	*dup;
+	t_list	*node;
 
 	dup = 0;
 	while (lst)
