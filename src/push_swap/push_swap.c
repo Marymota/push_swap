@@ -26,14 +26,12 @@ void	sort(int args, t_list **stack_a, t_list **stack_b)
 	max = (long int)ft_lstget_max(*stack_a);
 	ft_lstadd_front(&limits, ft_lstnew((void *)max));
 	ft_lstadd_front(&limits, ft_lstnew((void *)min));
-	//printf("\nlimits:%li, %li, min: %li, max: %li\n", (long)limits->data, (long)limits->next->data, min, max);
 	if (args <= 4)
 		sort_small(stack_a, min, max);
 	else if (args <= 6)
 		sort_medium(stack_a, stack_b, min, max);
 	else
 		sort_large(stack_a, stack_b, &limits);
-		
 }
 
 void	sort_small(t_list **stack, int min, int max)
@@ -77,13 +75,11 @@ void	sort_large(t_list **stack_a, t_list **stack_b, t_list **limits)
 		return ;
 	lim_len = get_limits(*limits, *stack_a);
 	ra_cnt = split_stack(stack_a, stack_b, *limits, lim_len);
-	//printf("\nstack_a: %li %li %li\n", (long int)(*stack_a)->data, (long int)(*stack_a)->next->data, (long int)(*stack_a)->next->next->data);
-	//printf("\nstack_a: %i, stack_b: %i\n", ft_lstsize(*stack_a), ft_lstsize(*stack_b));
 	if (ft_lstsize(*stack_a) != ft_lstsize(*stack_b))
 		if (ft_lstsize(*stack_a) + 1 != ft_lstsize(*stack_b))
 			while (ra_cnt--)
 				reverse_rotate(stack_a, "rra\n");
-	if (ft_lstsize(*stack_b) <= 10)
+	if (ft_lstsize(*stack_b) <= 20)
 	{
 		merge_b_into_a_ordering(stack_a, stack_b);
 		ft_lstdel_first(limits, ft_lstdel_int);
