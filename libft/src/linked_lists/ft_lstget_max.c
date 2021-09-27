@@ -3,16 +3,16 @@
 
 long int	ft_lstget_max(t_list *lst)
 {
-	long int	max;
+	void	*max;
 
 	if (!lst)
 		return (INT_MAX);
-	max = (long int)lst->data;
+	max = lst->data;
 	while (lst)
 	{
-		if ((long int)lst->data > max)
-			max = (long int)lst->data;
+		if (lst->data > max)
+			max = lst->data;
 		lst = lst->next;
 	}
-	return (max);
+	return ((long int)max);
 }

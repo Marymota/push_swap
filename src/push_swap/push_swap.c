@@ -7,59 +7,65 @@ int	main(int argc, char *argv[])
 
 	stack_a = 0;
 	stack_b = 0;
-	valid_arguments(argv + 1, argc);
-	get_stack(&stack_a, &argv[1]);
+	get_stack(&stack_a, argc, &argv[1]);
 	if (!ft_lstsorted(stack_a))
-		sort(argc, &stack_a, &stack_b);
+		sort(argc - 1, &stack_a, &stack_b);
 	ft_exit(0, &stack_a, &stack_b);
 	return (0);
 }
 
 void	sort(int args, t_list **stack_a, t_list **stack_b)
 {
-	long int	min;
-	long int	max;
+	void		*min;
+	void		*max;
 	t_list		*limits;
 
 	limits = 0;
-	min = (long int)ft_lstget_min(*stack_a);
-	max = (long int)ft_lstget_max(*stack_a);
-	ft_lstadd_front(&limits, ft_lstnew((void *)max));
-	ft_lstadd_front(&limits, ft_lstnew((void *)min));
-	if (args <= 4)
+	min = (void *)ft_lstget_min(*stack_a);
+	max = (void *)ft_lstget_max(*stack_a);
+	ft_lstadd_front(&limits, ft_lstnew(max));
+	ft_lstadd_front(&limits, ft_lstnew(min));
+	if (args <= 3)
 		sort_small(stack_a, min, max);
-	else if (args <= 6)
+	else if (args <= 5)
 		sort_medium(stack_a, stack_b, min, max);
 	else
 		sort_large(stack_a, stack_b, &limits);
 }
 
-void	sort_small(t_list **stack, int min, int max)
+void	sort_small(t_list **stack, void *min, void *max)
 {
 	while (!ft_lstsorted(*stack))
 	{
-		if ((int)(*stack)->data == max && (int)(*stack)->next->data == min)
+		if ((*stack)->data == max && (*stack)->next->data == min)
 			rotate(stack, "ra\n" );
-		else if ((int)(*stack)->data == min || (*stack)->data > (*stack)->next->data)
+		else if ((*stack)->data == min || (*stack)->data > (*stack)->next->data)
 			swap(*stack, "sa\n");
 		else
 			reverse_rotate(stack, "rra\n");
 	}
 }
 
-void	sort_medium(t_list **stack_a, t_list **stack_b, int min, int max)
+void	sort_medium(t_list **stack_a, t_list **stack_b, void *min, void *max)
 {
-	while (ft_lstsize(*stack_a) > 3)
+	if ((*stack_a)->next->data == min)
+		rotate(stack_a, "ra\n");
+	else if ((void *)ft_lstlast(*stack_a) == min)
+		reverse_rotate(stack_a, "rra\n");
+	while (ft_lstsize(*stack_a) > 3 && !ft_lstsorted(*stack_a))
 	{
-		while ((int)(*stack_a)->data != min)
+		while ((*stack_a)->data != min)
 		{
-			if ((int)(*stack_a)->next->data != min && (int)(*stack_a)->data != min)
-				reverse_rotate(stack_a, "rra\n");
-			else
+			if ((*stack_a)->next->next->data == min || (*stack_a)->next->data == min)
 				rotate(stack_a, "ra\n");
+			else
+				reverse_rotate(stack_a, "rra\n");
 		}
-		push(stack_a, stack_b, "pb\n");
-		min = ft_lstget_min(*stack_a);
+		if (!ft_lstsorted(*stack_a))
+		{
+			push(stack_a, stack_b, "pb\n");
+			min = (void *)ft_lstget_min(*stack_a);
+		}
 	}
 	sort_small(stack_a, min, max);
 	while (*stack_b)

@@ -3,16 +3,16 @@
 
 long int	ft_lstget_min(t_list *lst)
 {
-	long int	min;
+	void	*min;
 
 	if (!lst)
 		return (INT_MIN);
-	min = (long int)lst->data;
+	min = lst->data;
 	while (lst)
 	{
-		if ((long int)lst->data < min)
-			min = (long int)lst->data;
+		if (lst->data < min)
+			min = lst->data;
 		lst = lst->next;
 	}
-	return (min);
+	return ((long int)min);
 }

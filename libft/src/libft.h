@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:08:49 by marmota           #+#    #+#             */
-/*   Updated: 2021/09/21 18:55:36 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/27 16:52:49 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				ft_strisdigit(char *c);			//extra
+int				ft_strisdigit(char *c);	//extra
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
@@ -51,11 +51,11 @@ char			*ft_str_add_char(char *str, char c);	//extra
 
 // conversions
 int				ft_atoi(const char *nptr);
-char			*ft_char_to_str(char c); 				//extra
+char			*ft_char_to_str(char c);	//extra
 char			*ft_itoa(int n);
 
 // int
-size_t			ft_intlen(int i);						//extra
+size_t			ft_intlen(int i);	//extra
 
 // char
 int				ft_isalpha(int c);
@@ -78,23 +78,25 @@ t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 void (*del)(void *));
-t_list			*ft_lstdup(t_list *lst);					//extra
+t_list			*ft_lstdup(t_list *lst);	//extra
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstdel_int(void *data);					//extra
-void			ft_lstdel_first(t_list **lst, void (*del)(void*)); 	//extra
+void			ft_lstdel_int(void *data);	//extra
+void			ft_lstdel_first(t_list **lst, void (*del)(void*));	//extra
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-void			ft_lstsort(t_list **lst);					//extra
+void			ft_lstsort(t_list **lst);	//extra
 void			ft_lstadd_next(t_list *lst, t_list *node);	//extra
-int				ft_lstsize(t_list *lst);
-int				ft_lstcheck_dup(t_list *lst);				//extra
-int				ft_lstsorted(t_list *lst);					//extra
-int				ft_lstget_idx(t_list *lst, int value);		//extra
-int				ft_lstget_data(t_list *lst, int pos);		//extra
-long int		ft_lstget_min(t_list *lst);					//extra
-long int		ft_lstget_max(t_list *lst);					//extra
-long int		ft_lstget_median(t_list *lst);				//extra
+int				ft_lstsize(t_list *lst);				
+int				ft_lstcheck_dup(t_list *lst);	//extra
+int				ft_lstsorted(t_list *lst);	//extra
+int				ft_lstget_idx(t_list *lst, int value);	//extra
+int				ft_lstget_data(t_list *lst, int pos);	//extra
+long int		ft_lstget_min(t_list *lst);	//extra
+long int		ft_lstget_max(t_list *lst);	//extra
+long int		ft_lstget_median(t_list *lst);	//extra
+void			ft_exit(int exit_code, t_list **stack_a, t_list **stack_b);	
+//extra
 
 #endif
