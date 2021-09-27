@@ -6,8 +6,8 @@
 
 // push_swap
 void	sort(int args, t_list **stack_a, t_list **stack_b);
-void	sort_small(t_list **stack, void *min, void *max);
-void	sort_medium(t_list **stack_a, t_list **stack_b, void *min, void *max);
+void	sort_small(t_list **stack, int min, int max);
+void	sort_medium(t_list **stack_a, t_list **stack_b, int min, int max);
 void	sort_large(t_list **stack_a, t_list **stack_b, t_list **limits);
 // stacks
 void	get_stack(t_list **stack, int argc, char **args);

@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:08:49 by marmota           #+#    #+#             */
-/*   Updated: 2021/09/27 16:52:49 by marmota          ###   ########.fr       */
+/*   Updated: 2021/09/27 19:59:53 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int				ft_lstcheck_dup(t_list *lst);	//extra
 int				ft_lstsorted(t_list *lst);	//extra
 int				ft_lstget_idx(t_list *lst, int value);	//extra
 int				ft_lstget_data(t_list *lst, int pos);	//extra
-long int		ft_lstget_min(t_list *lst);	//extra
-long int		ft_lstget_max(t_list *lst);	//extra
+int				ft_lstget_min(t_list *lst);	//extra
+int				ft_lstget_max(t_list *lst);	//extra
 long int		ft_lstget_median(t_list *lst);	//extra
 void			ft_exit(int exit_code, t_list **stack_a, t_list **stack_b);	
 //extra

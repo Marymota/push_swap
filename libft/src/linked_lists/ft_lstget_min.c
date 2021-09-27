@@ -1,18 +1,18 @@
 #include "libft.h"
 /*Function to find the smallest value in a linked-list*/
 
-long int	ft_lstget_min(t_list *lst)
+int	ft_lstget_min(t_list *lst)
 {
-	void	*min;
+	int	min;
 
 	if (!lst)
 		return (INT_MIN);
-	min = lst->data;
+	min = (long int)lst->data;
 	while (lst)
 	{
-		if (lst->data < min)
-			min = lst->data;
+		if ((long int)lst->data < min)
+			min = (long int)lst->data;
 		lst = lst->next;
 	}
-	return ((long int)min);
+	return (min);
 }

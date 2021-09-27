@@ -1,18 +1,19 @@
 #include "libft.h"
+#include <stdio.h>
 /*Function to find the largest value in a linked-list*/
 
-long int	ft_lstget_max(t_list *lst)
+int	ft_lstget_max(t_list *lst)
 {
-	void	*max;
+	int	max;
 
 	if (!lst)
 		return (INT_MAX);
-	max = lst->data;
+	max = (long int)lst->data;
 	while (lst)
 	{
-		if (lst->data > max)
-			max = lst->data;
+		if ((long int)lst->data > max)
+			max = (long int)lst->data;
 		lst = lst->next;
 	}
-	return ((long int)max);
+	return (max);
 }
