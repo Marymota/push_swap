@@ -35,7 +35,6 @@ void	sort(int args, t_list **stack_a, t_list **stack_b)
 
 void	sort_small(t_list **stack, int min, int max)
 {
-	print_stack(*stack);
 	while (!ft_lstsorted(*stack))
 	{
 		if ((int)(*stack)->data == max && (int)(*stack)->next->data == min)
